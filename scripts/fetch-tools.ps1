@@ -18,8 +18,12 @@ param(
 
     # WinUI 3
     [Parameter(Mandatory=$false)]
-    [string]$WindowsAppSDKVersion = "1.8.250610002-experimental3",
+    [string]$WindowsAppSDKVersion = "1.8.250620001-experimental",
     [switch]$noWindowsAppSDK,
+
+    [Parameter(Mandatory=$false)]
+    [string]$WindowsMLVersion = "1.8.10",
+    [switch]$noWindowsML,
 
     # WebView2
     [Parameter(Mandatory=$false)]
@@ -59,6 +63,14 @@ if (!$noWindowsSdk) {
 
 if (!$noMicrosoftUiXaml) {
     & nuget install Microsoft.UI.Xaml -Version $MicrosoftUiXaml -ExcludeVersion -DependencyVersion Ignore -OutputDirectory "$repoRootPath/_tools" -NoHttpCache
+
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
+}
+
+if (!$noWindowsML) {
+    & nuget install Microsoft.WindowsAppSDK.ML -Version $WindowsMLVersion -ExcludeVersion -DependencyVersion Ignore -OutputDirectory "$repoRootPath/_tools" -NoHttpCache
 
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE

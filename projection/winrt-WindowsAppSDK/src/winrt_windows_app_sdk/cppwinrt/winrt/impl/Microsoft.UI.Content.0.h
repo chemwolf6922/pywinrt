@@ -89,6 +89,12 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Content
         ResizeContentToParentWindow = 1,
         ResizeParentWindowToContent = 2,
     };
+    enum class PopupAnchoringOptions : int32_t
+    {
+        None = 0,
+        TopLevelWindow = 1,
+        ParentIsland = 2,
+    };
     struct IChildSiteLink;
     struct IChildSiteLinkStatics;
     struct IContentAppWindowBridge;
@@ -150,6 +156,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Content
     struct IDesktopChildSiteBridgeStatics;
     struct IDesktopChildSiteBridgeStatics2;
     struct IDesktopPopupSiteBridge;
+    struct IDesktopPopupSiteBridge2;
     struct IDesktopPopupSiteBridgeStatics;
     struct IDesktopSiteBridge;
     struct IDesktopSiteBridge2;
@@ -256,6 +263,7 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Content::IDesktopSiteBridge>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Content::IDesktopSiteBridge2>{ using type = interface_category; };
@@ -303,6 +311,7 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::UI::Content::ContentDisplayOrientations>{ using type = enum_category; };
     template <> struct category<winrt::Microsoft::UI::Content::ContentLayoutDirection>{ using type = enum_category; };
     template <> struct category<winrt::Microsoft::UI::Content::ContentSizePolicy>{ using type = enum_category; };
+    template <> struct category<winrt::Microsoft::UI::Content::PopupAnchoringOptions>{ using type = enum_category; };
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::ChildSiteLink> = L"Microsoft.UI.Content.ChildSiteLink";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::ContentAppWindowBridge> = L"Microsoft.UI.Content.ContentAppWindowBridge";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::ContentCoordinateConverter> = L"Microsoft.UI.Content.ContentCoordinateConverter";
@@ -337,6 +346,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::ContentDisplayOrientations> = L"Microsoft.UI.Content.ContentDisplayOrientations";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::ContentLayoutDirection> = L"Microsoft.UI.Content.ContentLayoutDirection";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::ContentSizePolicy> = L"Microsoft.UI.Content.ContentSizePolicy";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::PopupAnchoringOptions> = L"Microsoft.UI.Content.PopupAnchoringOptions";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IChildSiteLink> = L"Microsoft.UI.Content.IChildSiteLink";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IChildSiteLinkStatics> = L"Microsoft.UI.Content.IChildSiteLinkStatics";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IContentAppWindowBridge> = L"Microsoft.UI.Content.IContentAppWindowBridge";
@@ -398,6 +408,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics> = L"Microsoft.UI.Content.IDesktopChildSiteBridgeStatics";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics2> = L"Microsoft.UI.Content.IDesktopChildSiteBridgeStatics2";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge> = L"Microsoft.UI.Content.IDesktopPopupSiteBridge";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2> = L"Microsoft.UI.Content.IDesktopPopupSiteBridge2";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics> = L"Microsoft.UI.Content.IDesktopPopupSiteBridgeStatics";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopSiteBridge> = L"Microsoft.UI.Content.IDesktopSiteBridge";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Content::IDesktopSiteBridge2> = L"Microsoft.UI.Content.IDesktopSiteBridge2";
@@ -472,6 +483,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics>{ 0xAB6B82DE,0x6A47,0x5DE3,{ 0xA8,0x60,0x61,0x3C,0x8D,0xB6,0x79,0xAB } }; // AB6B82DE-6A47-5DE3-A860-613C8DB679AB
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics2>{ 0xAAE99407,0xE378,0x5C53,{ 0x9A,0xFF,0x5A,0x3B,0x53,0xE1,0x94,0xA8 } }; // AAE99407-E378-5C53-9AFF-5A3B53E194A8
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge>{ 0x84EAAB23,0xF716,0x5AD8,{ 0xAC,0x00,0x3D,0x77,0xC0,0x1D,0x42,0xCC } }; // 84EAAB23-F716-5AD8-AC00-3D77C01D42CC
+    template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>{ 0xF256EFB0,0xEF4C,0x56B8,{ 0xAE,0x5D,0xDF,0x7F,0xB2,0xC4,0xB7,0x8E } }; // F256EFB0-EF4C-56B8-AE5D-DF7FB2C4B78E
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics>{ 0x4EA2B77B,0x3177,0x5E5B,{ 0x8D,0x0D,0xA7,0x6E,0x15,0xC6,0xD0,0x80 } }; // 4EA2B77B-3177-5E5B-8D0D-A76E15C6D080
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopSiteBridge>{ 0xF0AE8750,0x905C,0x50A2,{ 0x8A,0x12,0x45,0x45,0xC6,0x24,0x5B,0xB4 } }; // F0AE8750-905C-50A2-8A12-4545C6245BB4
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Content::IDesktopSiteBridge2>{ 0x1190C041,0x82FB,0x5F3B,{ 0x91,0x11,0xCA,0x8F,0x19,0xA7,0x2B,0x75 } }; // 1190C041-82FB-5F3B-9111-CA8F19A72B75
@@ -1121,6 +1133,16 @@ namespace winrt::impl
             virtual int32_t __stdcall MoveInZOrderAtTop() noexcept = 0;
             virtual int32_t __stdcall MoveInZOrderBelow(struct struct_Microsoft_UI_WindowId) noexcept = 0;
             virtual int32_t __stdcall Show() noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AnchoringBehavior(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_AnchoringBehavior(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_AnchoringPixelAlignment(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_AnchoringPixelAlignment(int32_t) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics>
@@ -1984,6 +2006,18 @@ namespace winrt::impl
     template <> struct consume<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge>
     {
         template <typename D> using type = consume_Microsoft_UI_Content_IDesktopPopupSiteBridge<D>;
+    };
+    template <typename D>
+    struct consume_Microsoft_UI_Content_IDesktopPopupSiteBridge2
+    {
+        [[nodiscard]] auto AnchoringBehavior() const;
+        auto AnchoringBehavior(winrt::Microsoft::UI::Content::PopupAnchoringOptions const& value) const;
+        [[nodiscard]] auto AnchoringPixelAlignment() const;
+        auto AnchoringPixelAlignment(winrt::Microsoft::UI::Content::ContentCoordinateRoundingMode const& value) const;
+    };
+    template <> struct consume<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>
+    {
+        template <typename D> using type = consume_Microsoft_UI_Content_IDesktopPopupSiteBridge2<D>;
     };
     template <typename D>
     struct consume_Microsoft_UI_Content_IDesktopPopupSiteBridgeStatics

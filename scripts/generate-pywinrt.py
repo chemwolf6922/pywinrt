@@ -148,7 +148,8 @@ windows_app_sdk_metadata_paths = [
     # This is why we cannot simply find all metadata folders for WinAppSDK.
     REPO_ROOT_PATH / "_tools" / "Microsoft.WindowsAppSDK.InteractiveExperiences" / "metadata" / "10.0.18362.0",
     REPO_ROOT_PATH / "_tools" / "Microsoft.WindowsAppSDK.Widgets" / "metadata",
-    REPO_ROOT_PATH / "_tools" / "Microsoft.WindowsAppSDK.WinUI" / "metadata"
+    REPO_ROOT_PATH / "_tools" / "Microsoft.WindowsAppSDK.WinUI" / "metadata",
+    REPO_ROOT_PATH / "_tools" / "Microsoft.WindowsAppSDK.ML" / "metadata"
 ]
 
 WINDOWS_APP_SDK_PACKAGE_PATH = (

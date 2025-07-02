@@ -21,7 +21,7 @@ import winui3.microsoft.ui as microsoft_ui
 import winui3.microsoft.ui.composition as microsoft_ui_composition
 import winui3.microsoft.ui.dispatching as microsoft_ui_dispatching
 
-from winui3.microsoft.ui.content import ContentAutomationOptions, ContentCoordinateRoundingMode, ContentDisplayOrientations, ContentLayoutDirection, ContentSizePolicy
+from winui3.microsoft.ui.content import ContentAutomationOptions, ContentCoordinateRoundingMode, ContentDisplayOrientations, ContentLayoutDirection, ContentSizePolicy, PopupAnchoringOptions
 
 Self = typing.TypeVar('Self')
 
@@ -1071,6 +1071,18 @@ class DesktopPopupSiteBridge(winrt.system.Object, IContentSiteLink, IContentSite
     # Microsoft.UI.WindowId Microsoft.UI.Content.DesktopPopupSiteBridge::get_WindowId()
     @_property
     def window_id(self) -> microsoft_ui.WindowId: ...
+    # Microsoft.UI.Content.ContentCoordinateRoundingMode Microsoft.UI.Content.DesktopPopupSiteBridge::get_AnchoringPixelAlignment()
+    @_property
+    def anchoring_pixel_alignment(self) -> ContentCoordinateRoundingMode: ...
+    # System.Void Microsoft.UI.Content.DesktopPopupSiteBridge::put_AnchoringPixelAlignment(Microsoft.UI.Content.ContentCoordinateRoundingMode)
+    @anchoring_pixel_alignment.setter
+    def anchoring_pixel_alignment(self, value: ContentCoordinateRoundingMode) -> None: ...
+    # Microsoft.UI.Content.PopupAnchoringOptions Microsoft.UI.Content.DesktopPopupSiteBridge::get_AnchoringBehavior()
+    @_property
+    def anchoring_behavior(self) -> PopupAnchoringOptions: ...
+    # System.Void Microsoft.UI.Content.DesktopPopupSiteBridge::put_AnchoringBehavior(Microsoft.UI.Content.PopupAnchoringOptions)
+    @anchoring_behavior.setter
+    def anchoring_behavior(self, value: PopupAnchoringOptions) -> None: ...
     # System.Boolean Microsoft.UI.Content.DesktopPopupSiteBridge::get_IsClosed()
     @_property
     def is_closed(self) -> bool: ...

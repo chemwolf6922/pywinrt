@@ -26611,6 +26611,26 @@
             ]
           },
           {
+            "signature": "Microsoft.UI.Content.PopupAnchoringOptions Microsoft.UI.Content.DesktopPopupSiteBridge::get_AnchoringBehavior()",
+            "name": "get_AnchoringBehavior",
+            "return": {
+              "type": {
+                "name": "Microsoft.UI.Content.PopupAnchoringOptions"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Microsoft.UI.Content.ContentCoordinateRoundingMode Microsoft.UI.Content.DesktopPopupSiteBridge::get_AnchoringPixelAlignment()",
+            "name": "get_AnchoringPixelAlignment",
+            "return": {
+              "type": {
+                "name": "Microsoft.UI.Content.ContentCoordinateRoundingMode"
+              }
+            },
+            "parameters": []
+          },
+          {
             "signature": "Microsoft.UI.Content.ContentAutomationOptions Microsoft.UI.Content.DesktopPopupSiteBridge::get_AutomationOption()",
             "name": "get_AutomationOption",
             "return": {
@@ -26724,6 +26744,42 @@
               }
             },
             "parameters": []
+          },
+          {
+            "signature": "System.Void Microsoft.UI.Content.DesktopPopupSiteBridge::put_AnchoringBehavior(Microsoft.UI.Content.PopupAnchoringOptions)",
+            "name": "put_AnchoringBehavior",
+            "return": {
+              "type": {
+                "name": "System.Void"
+              }
+            },
+            "parameters": [
+              {
+                "name": "value",
+                "kind": "in",
+                "type": {
+                  "name": "Microsoft.UI.Content.PopupAnchoringOptions"
+                }
+              }
+            ]
+          },
+          {
+            "signature": "System.Void Microsoft.UI.Content.DesktopPopupSiteBridge::put_AnchoringPixelAlignment(Microsoft.UI.Content.ContentCoordinateRoundingMode)",
+            "name": "put_AnchoringPixelAlignment",
+            "return": {
+              "type": {
+                "name": "System.Void"
+              }
+            },
+            "parameters": [
+              {
+                "name": "value",
+                "kind": "in",
+                "type": {
+                  "name": "Microsoft.UI.Content.ContentCoordinateRoundingMode"
+                }
+              }
+            ]
           },
           {
             "signature": "System.Void Microsoft.UI.Content.DesktopPopupSiteBridge::put_AutomationOption(Microsoft.UI.Content.ContentAutomationOptions)",
@@ -192855,6 +192911,180 @@
                 }
               }
             ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "namespace": "Microsoft.Windows.AI.MachineLearning",
+    "types": [
+      {
+        "name": "ExecutionProvider",
+        "methods": [
+          {
+            "signature": "Windows.Foundation.IAsyncOperationWithProgress`2<Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResult,System.Double> Microsoft.Windows.AI.MachineLearning.ExecutionProvider::EnsureReadyAsync()",
+            "name": "EnsureReadyAsync",
+            "return": {
+              "type": {
+                "name": "Windows.Foundation.IAsyncOperationWithProgress`2",
+                "args": [
+                  {
+                    "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResult"
+                  },
+                  {
+                    "name": "System.Double"
+                  }
+                ]
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "System.Boolean Microsoft.Windows.AI.MachineLearning.ExecutionProvider::TryRegister()",
+            "name": "TryRegister",
+            "return": {
+              "type": {
+                "name": "System.Boolean"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "System.String Microsoft.Windows.AI.MachineLearning.ExecutionProvider::get_LibraryPath()",
+            "name": "get_LibraryPath",
+            "return": {
+              "type": {
+                "name": "System.String"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "System.String Microsoft.Windows.AI.MachineLearning.ExecutionProvider::get_Name()",
+            "name": "get_Name",
+            "return": {
+              "type": {
+                "name": "System.String"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyState Microsoft.Windows.AI.MachineLearning.ExecutionProvider::get_ReadyState()",
+            "name": "get_ReadyState",
+            "return": {
+              "type": {
+                "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyState"
+              }
+            },
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "name": "ExecutionProviderCatalog",
+        "methods": [
+          {
+            "signature": "Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Foundation.Collections.IVector`1<Microsoft.Windows.AI.MachineLearning.ExecutionProvider>,System.Double> Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog::EnsureAndRegisterAllAsync()",
+            "name": "EnsureAndRegisterAllAsync",
+            "return": {
+              "type": {
+                "name": "Windows.Foundation.IAsyncOperationWithProgress`2",
+                "args": [
+                  {
+                    "name": "Windows.Foundation.Collections.IVector`1",
+                    "args": [
+                      {
+                        "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProvider"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "System.Double"
+                  }
+                ]
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Microsoft.Windows.AI.MachineLearning.ExecutionProvider[] Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog::FindAllProviders()",
+            "name": "FindAllProviders",
+            "return": {
+              "type": {
+                "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProvider[]"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog::GetDefault()",
+            "name": "GetDefault",
+            "return": {
+              "type": {
+                "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Foundation.Collections.IVector`1<Microsoft.Windows.AI.MachineLearning.ExecutionProvider>,System.Double> Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog::RegisterAllAsync()",
+            "name": "RegisterAllAsync",
+            "return": {
+              "type": {
+                "name": "Windows.Foundation.IAsyncOperationWithProgress`2",
+                "args": [
+                  {
+                    "name": "Windows.Foundation.Collections.IVector`1",
+                    "args": [
+                      {
+                        "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProvider"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "System.Double"
+                  }
+                ]
+              }
+            },
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "name": "ExecutionProviderReadyResult",
+        "methods": [
+          {
+            "signature": "System.String Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResult::get_DiagnosticText()",
+            "name": "get_DiagnosticText",
+            "return": {
+              "type": {
+                "name": "System.String"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Windows.Foundation.HResult Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResult::get_ExtendedError()",
+            "name": "get_ExtendedError",
+            "return": {
+              "type": {
+                "name": "Windows.Foundation.HResult"
+              }
+            },
+            "parameters": []
+          },
+          {
+            "signature": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResultState Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResult::get_Status()",
+            "name": "get_Status",
+            "return": {
+              "type": {
+                "name": "Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResultState"
+              }
+            },
+            "parameters": []
           }
         ]
       }

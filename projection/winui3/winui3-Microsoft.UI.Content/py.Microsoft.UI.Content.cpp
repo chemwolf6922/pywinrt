@@ -12151,6 +12151,144 @@ namespace py::cpp::Microsoft::UI::Content
         }
     }
 
+    static PyObject* DesktopPopupSiteBridge_get_AnchoringPixelAlignment(py::wrapper::Microsoft::UI::Content::DesktopPopupSiteBridge* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            static std::optional<bool> is_property_present{};
+
+            if (!is_property_present.has_value())
+            {
+                is_property_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Microsoft.UI.Content.DesktopPopupSiteBridge", L"AnchoringPixelAlignment");
+            }
+
+            if (!is_property_present.value())
+            {
+                PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+                return nullptr;
+            }
+
+            return py::convert([&]()
+            {
+                auto _gil = release_gil();
+                return self->obj.AnchoringPixelAlignment();
+            }());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int DesktopPopupSiteBridge_put_AnchoringPixelAlignment(py::wrapper::Microsoft::UI::Content::DesktopPopupSiteBridge* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!arg)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            static std::optional<bool> is_property_present{};
+
+            if (!is_property_present.has_value())
+            {
+                is_property_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Microsoft.UI.Content.DesktopPopupSiteBridge", L"AnchoringPixelAlignment");
+            }
+
+            if (!is_property_present.value())
+            {
+                PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+                return -1;
+            }
+
+            auto param0 = py::convert_to<winrt::Microsoft::UI::Content::ContentCoordinateRoundingMode>(arg);
+
+            {
+                auto _gil = release_gil();
+                self->obj.AnchoringPixelAlignment(param0);
+            }
+
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* DesktopPopupSiteBridge_get_AnchoringBehavior(py::wrapper::Microsoft::UI::Content::DesktopPopupSiteBridge* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            static std::optional<bool> is_property_present{};
+
+            if (!is_property_present.has_value())
+            {
+                is_property_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Microsoft.UI.Content.DesktopPopupSiteBridge", L"AnchoringBehavior");
+            }
+
+            if (!is_property_present.value())
+            {
+                PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+                return nullptr;
+            }
+
+            return py::convert([&]()
+            {
+                auto _gil = release_gil();
+                return self->obj.AnchoringBehavior();
+            }());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int DesktopPopupSiteBridge_put_AnchoringBehavior(py::wrapper::Microsoft::UI::Content::DesktopPopupSiteBridge* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!arg)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            static std::optional<bool> is_property_present{};
+
+            if (!is_property_present.has_value())
+            {
+                is_property_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Microsoft.UI.Content.DesktopPopupSiteBridge", L"AnchoringBehavior");
+            }
+
+            if (!is_property_present.value())
+            {
+                PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+                return -1;
+            }
+
+            auto param0 = py::convert_to<winrt::Microsoft::UI::Content::PopupAnchoringOptions>(arg);
+
+            {
+                auto _gil = release_gil();
+                self->obj.AnchoringBehavior(param0);
+            }
+
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
     static PyObject* DesktopPopupSiteBridge_get_IsClosed(py::wrapper::Microsoft::UI::Content::DesktopPopupSiteBridge* self, void* /*unused*/) noexcept
     {
         try
@@ -12658,6 +12796,8 @@ namespace py::cpp::Microsoft::UI::Content
         { "is_visible", reinterpret_cast<getter>(DesktopPopupSiteBridge_get_IsVisible), nullptr, nullptr, nullptr },
         { "site_view", reinterpret_cast<getter>(DesktopPopupSiteBridge_get_SiteView), nullptr, nullptr, nullptr },
         { "window_id", reinterpret_cast<getter>(DesktopPopupSiteBridge_get_WindowId), nullptr, nullptr, nullptr },
+        { "anchoring_pixel_alignment", reinterpret_cast<getter>(DesktopPopupSiteBridge_get_AnchoringPixelAlignment), reinterpret_cast<setter>(DesktopPopupSiteBridge_put_AnchoringPixelAlignment), nullptr, nullptr },
+        { "anchoring_behavior", reinterpret_cast<getter>(DesktopPopupSiteBridge_get_AnchoringBehavior), reinterpret_cast<setter>(DesktopPopupSiteBridge_put_AnchoringBehavior), nullptr, nullptr },
         { "is_closed", reinterpret_cast<getter>(DesktopPopupSiteBridge_get_IsClosed), nullptr, nullptr, nullptr },
         { }};
 

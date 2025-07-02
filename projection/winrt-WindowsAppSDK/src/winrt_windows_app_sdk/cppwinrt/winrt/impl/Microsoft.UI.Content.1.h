@@ -435,6 +435,13 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Content
         IDesktopPopupSiteBridge(std::nullptr_t = nullptr) noexcept {}
         IDesktopPopupSiteBridge(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct WINRT_IMPL_EMPTY_BASES IDesktopPopupSiteBridge2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDesktopPopupSiteBridge2>
+    {
+        IDesktopPopupSiteBridge2(std::nullptr_t = nullptr) noexcept {}
+        IDesktopPopupSiteBridge2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct WINRT_IMPL_EMPTY_BASES IDesktopPopupSiteBridgeStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDesktopPopupSiteBridgeStatics>

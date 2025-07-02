@@ -4320,6 +4320,74 @@ namespace winrt::impl
             check_hresult(_winrt_abi_type->Show());
         }
     }
+    template <typename D> auto consume_Microsoft_UI_Content_IDesktopPopupSiteBridge2<D>::AnchoringBehavior() const
+    {
+        winrt::Microsoft::UI::Content::PopupAnchoringOptions value{};
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->get_AnchoringBehavior(reinterpret_cast<int32_t*>(&value)));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)this;
+            check_hresult(_winrt_abi_type->get_AnchoringBehavior(reinterpret_cast<int32_t*>(&value)));
+        }
+        return value;
+    }
+    template <typename D> auto consume_Microsoft_UI_Content_IDesktopPopupSiteBridge2<D>::AnchoringBehavior(winrt::Microsoft::UI::Content::PopupAnchoringOptions const& value) const
+    {
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->put_AnchoringBehavior(static_cast<int32_t>(value)));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)this;
+            check_hresult(_winrt_abi_type->put_AnchoringBehavior(static_cast<int32_t>(value)));
+        }
+    }
+    template <typename D> auto consume_Microsoft_UI_Content_IDesktopPopupSiteBridge2<D>::AnchoringPixelAlignment() const
+    {
+        winrt::Microsoft::UI::Content::ContentCoordinateRoundingMode value{};
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->get_AnchoringPixelAlignment(reinterpret_cast<int32_t*>(&value)));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)this;
+            check_hresult(_winrt_abi_type->get_AnchoringPixelAlignment(reinterpret_cast<int32_t*>(&value)));
+        }
+        return value;
+    }
+    template <typename D> auto consume_Microsoft_UI_Content_IDesktopPopupSiteBridge2<D>::AnchoringPixelAlignment(winrt::Microsoft::UI::Content::ContentCoordinateRoundingMode const& value) const
+    {
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->put_AnchoringPixelAlignment(static_cast<int32_t>(value)));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>**)this;
+            check_hresult(_winrt_abi_type->put_AnchoringPixelAlignment(static_cast<int32_t>(value)));
+        }
+    }
     template <typename D> auto consume_Microsoft_UI_Content_IDesktopPopupSiteBridgeStatics<D>::Create(winrt::Microsoft::UI::Content::ContentIsland const& parent) const
     {
         void* result{};
@@ -6858,6 +6926,40 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2> : produce_base<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2>
+    {
+        int32_t __stdcall get_AnchoringBehavior(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Microsoft::UI::Content::PopupAnchoringOptions>(this->shim().AnchoringBehavior());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AnchoringBehavior(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AnchoringBehavior(*reinterpret_cast<winrt::Microsoft::UI::Content::PopupAnchoringOptions const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AnchoringPixelAlignment(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Microsoft::UI::Content::ContentCoordinateRoundingMode>(this->shim().AnchoringPixelAlignment());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AnchoringPixelAlignment(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AnchoringPixelAlignment(*reinterpret_cast<winrt::Microsoft::UI::Content::ContentCoordinateRoundingMode const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics> : produce_base<D, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics>
     {
         int32_t __stdcall Create(void* parent, void** result) noexcept final try
@@ -7296,6 +7398,7 @@ namespace std
     template<> struct hash<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Content::IDesktopChildSiteBridgeStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Content::IDesktopPopupSiteBridgeStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Content::IDesktopSiteBridge> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Content::IDesktopSiteBridge2> : winrt::impl::hash_base {};

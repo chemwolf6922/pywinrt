@@ -68,6 +68,7 @@ __all__ = [
     "ContentDisplayOrientations",
     "ContentLayoutDirection",
     "ContentSizePolicy",
+    "PopupAnchoringOptions",
     "ChildSiteLink",
     "ContentAppWindowBridge",
     "ContentCoordinateConverter",
@@ -132,4 +133,9 @@ class ContentSizePolicy(enum.IntEnum):
     NONE = 0
     RESIZE_CONTENT_TO_PARENT_WINDOW = 1
     RESIZE_PARENT_WINDOW_TO_CONTENT = 2
+
+class PopupAnchoringOptions(enum.IntEnum):
+    NONE = 0
+    TOP_LEVEL_WINDOW = 1
+    PARENT_ISLAND = 2
 

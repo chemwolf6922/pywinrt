@@ -159,7 +159,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Content
         static auto CreateWithDispatcherQueue(winrt::Microsoft::UI::Dispatching::DispatcherQueue const& queue, winrt::Microsoft::UI::WindowId const& parentWindowId);
     };
     struct WINRT_IMPL_EMPTY_BASES DesktopPopupSiteBridge : winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge,
-        impl::require<DesktopPopupSiteBridge, winrt::Windows::Foundation::IClosable, winrt::Microsoft::UI::IClosableNotifier, winrt::Microsoft::UI::Content::IContentSiteAutomation, winrt::Microsoft::UI::Content::IContentSiteBridge, winrt::Microsoft::UI::Content::IContentSiteLink>
+        impl::require<DesktopPopupSiteBridge, winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge2, winrt::Windows::Foundation::IClosable, winrt::Microsoft::UI::IClosableNotifier, winrt::Microsoft::UI::Content::IContentSiteAutomation, winrt::Microsoft::UI::Content::IContentSiteBridge, winrt::Microsoft::UI::Content::IContentSiteLink>
     {
         DesktopPopupSiteBridge(std::nullptr_t) noexcept {}
         DesktopPopupSiteBridge(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::UI::Content::IDesktopPopupSiteBridge(ptr, take_ownership_from_abi) {}

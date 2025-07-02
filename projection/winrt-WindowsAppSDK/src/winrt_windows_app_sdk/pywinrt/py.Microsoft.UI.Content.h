@@ -38,6 +38,9 @@ namespace py
     template<>
     inline constexpr const char* buffer_format<winrt::Microsoft::UI::Content::ContentSizePolicy> = "i";
 
+    template<>
+    inline constexpr const char* buffer_format<winrt::Microsoft::UI::Content::PopupAnchoringOptions> = "i";
+
 
     template<>
     struct py_type<winrt::Microsoft::UI::Content::ContentAutomationOptions>
@@ -77,6 +80,14 @@ namespace py
         static constexpr std::string_view qualified_name = "winui3.microsoft.ui.content.ContentSizePolicy";
         static constexpr const char* module_name = "winui3.microsoft.ui.content";
         static constexpr const char* type_name = "ContentSizePolicy";
+    };
+
+    template<>
+    struct py_type<winrt::Microsoft::UI::Content::PopupAnchoringOptions>
+    {
+        static constexpr std::string_view qualified_name = "winui3.microsoft.ui.content.PopupAnchoringOptions";
+        static constexpr const char* module_name = "winui3.microsoft.ui.content";
+        static constexpr const char* type_name = "PopupAnchoringOptions";
     };
 
     template<>
