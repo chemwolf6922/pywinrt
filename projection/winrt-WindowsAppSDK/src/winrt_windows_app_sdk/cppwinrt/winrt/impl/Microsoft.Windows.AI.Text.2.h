@@ -50,14 +50,17 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::AI::Text
         LanguageModelResponseResult(std::nullptr_t) noexcept {}
         LanguageModelResponseResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::AI::Text::ILanguageModelResponseResult(ptr, take_ownership_from_abi) {}
     };
-    struct WINRT_IMPL_EMPTY_BASES TextRewriter : winrt::Microsoft::Windows::AI::Text::ITextRewriter
+    struct WINRT_IMPL_EMPTY_BASES TextRewriter : winrt::Microsoft::Windows::AI::Text::ITextRewriter,
+        impl::require<TextRewriter, winrt::Microsoft::Windows::AI::Text::ITextRewriter2>
     {
         TextRewriter(std::nullptr_t) noexcept {}
         TextRewriter(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::AI::Text::ITextRewriter(ptr, take_ownership_from_abi) {}
         explicit TextRewriter(winrt::Microsoft::Windows::AI::Text::LanguageModel const& languageModel);
+        using winrt::Microsoft::Windows::AI::Text::ITextRewriter::RewriteAsync;
+        using impl::consume_t<TextRewriter, winrt::Microsoft::Windows::AI::Text::ITextRewriter2>::RewriteAsync;
     };
     struct WINRT_IMPL_EMPTY_BASES TextSummarizer : winrt::Microsoft::Windows::AI::Text::ITextSummarizer,
-        impl::require<TextSummarizer, winrt::Microsoft::Windows::AI::Text::ITextSummarizer2>
+        impl::require<TextSummarizer, winrt::Microsoft::Windows::AI::Text::ITextSummarizer2, winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>
     {
         TextSummarizer(std::nullptr_t) noexcept {}
         TextSummarizer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::AI::Text::ITextSummarizer(ptr, take_ownership_from_abi) {}

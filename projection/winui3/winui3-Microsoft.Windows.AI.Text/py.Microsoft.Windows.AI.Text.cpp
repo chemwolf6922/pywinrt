@@ -337,6 +337,75 @@ namespace py::cpp::Microsoft::Windows::AI::Text
         }
     }
 
+    static PyObject* ConversationSummaryOptions_get_Language(py::wrapper::Microsoft::Windows::AI::Text::ConversationSummaryOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            static std::optional<bool> is_property_present{};
+
+            if (!is_property_present.has_value())
+            {
+                is_property_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Microsoft.Windows.AI.Text.ConversationSummaryOptions", L"Language");
+            }
+
+            if (!is_property_present.value())
+            {
+                PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+                return nullptr;
+            }
+
+            return py::convert([&]()
+            {
+                auto _gil = release_gil();
+                return self->obj.Language();
+            }());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ConversationSummaryOptions_put_Language(py::wrapper::Microsoft::Windows::AI::Text::ConversationSummaryOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!arg)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            static std::optional<bool> is_property_present{};
+
+            if (!is_property_present.has_value())
+            {
+                is_property_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Microsoft.Windows.AI.Text.ConversationSummaryOptions", L"Language");
+            }
+
+            if (!is_property_present.value())
+            {
+                PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+                return -1;
+            }
+
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            {
+                auto _gil = release_gil();
+                self->obj.Language(param0);
+            }
+
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
     static PyObject* ConversationSummaryOptions_get_InputKind(py::wrapper::Microsoft::Windows::AI::Text::ConversationSummaryOptions* self, void* /*unused*/) noexcept
     {
         try
@@ -575,6 +644,7 @@ namespace py::cpp::Microsoft::Windows::AI::Text
 
     static PyGetSetDef _getset_ConversationSummaryOptions[] = {
         { "max_key_points", reinterpret_cast<getter>(ConversationSummaryOptions_get_MaxKeyPoints), reinterpret_cast<setter>(ConversationSummaryOptions_put_MaxKeyPoints), nullptr, nullptr },
+        { "language", reinterpret_cast<getter>(ConversationSummaryOptions_get_Language), reinterpret_cast<setter>(ConversationSummaryOptions_put_Language), nullptr, nullptr },
         { "input_kind", reinterpret_cast<getter>(ConversationSummaryOptions_get_InputKind), reinterpret_cast<setter>(ConversationSummaryOptions_put_InputKind), nullptr, nullptr },
         { "include_participant_attribution", reinterpret_cast<getter>(ConversationSummaryOptions_get_IncludeParticipantAttribution), reinterpret_cast<setter>(ConversationSummaryOptions_put_IncludeParticipantAttribution), nullptr, nullptr },
         { "include_message_citations", reinterpret_cast<getter>(ConversationSummaryOptions_get_IncludeMessageCitations), reinterpret_cast<setter>(ConversationSummaryOptions_put_IncludeMessageCitations), nullptr, nullptr },
@@ -2358,6 +2428,38 @@ namespace py::cpp::Microsoft::Windows::AI::Text
                 return nullptr;
             }
         }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                static std::optional<bool> is_overload_present{};
+
+                if (!is_overload_present.has_value())
+                {
+                    is_overload_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Microsoft.Windows.AI.Text.TextRewriter", L"RewriteAsync", 2);
+                }
+
+                if (!is_overload_present.value())
+                {
+                    py::set_arg_count_version_error(2);
+                    return nullptr;
+                }
+
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Microsoft::Windows::AI::Text::TextRewriteTone>(args, 1);
+
+                return py::convert([&]()
+                {
+                    auto _gil = release_gil();
+                    return self->obj.RewriteAsync(param0, param1);
+                }());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
         else
         {
             py::set_invalid_arg_count_error(arg_count);
@@ -2451,6 +2553,63 @@ namespace py::cpp::Microsoft::Windows::AI::Text
         std::destroy_at(&self->obj);
         tp->tp_free(self);
         Py_DECREF(tp);
+    }
+
+    static PyObject* TextSummarizer_IsPromptLargerThanContext(py::wrapper::Microsoft::Windows::AI::Text::TextSummarizer* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_GET_SIZE(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                static std::optional<bool> is_overload_present{};
+
+                if (!is_overload_present.has_value())
+                {
+                    is_overload_present = winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Microsoft.Windows.AI.Text.TextSummarizer", L"IsPromptLargerThanContext", 2);
+                }
+
+                if (!is_overload_present.value())
+                {
+                    py::set_arg_count_version_error(2);
+                    return nullptr;
+                }
+
+                auto param0 = py::convert_to<py::pybuf_view<winrt::Microsoft::Windows::AI::Text::ConversationItem, false>>(args, 0);
+                auto param1 = py::convert_to<winrt::Microsoft::Windows::AI::Text::ConversationSummaryOptions>(args, 1);
+                uint64_t param2{};
+
+                auto return_value = [&]()
+                {
+                    auto _gil = release_gil();
+                    return self->obj.IsPromptLargerThanContext(param0, param1, param2);
+                }();
+
+                py::pyobj_handle out_return_value{ py::convert(return_value) };
+                if (!out_return_value)
+                {
+                    return nullptr;
+                }
+                py::pyobj_handle out2{ py::convert(param2) };
+                if (!out2)
+                {
+                    return nullptr;
+                }
+
+                return PyTuple_Pack(2, out_return_value.get(), out2.get());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
     }
 
     static PyObject* TextSummarizer_SummarizeAsync(py::wrapper::Microsoft::Windows::AI::Text::TextSummarizer* self, PyObject* args) noexcept
@@ -2605,6 +2764,7 @@ namespace py::cpp::Microsoft::Windows::AI::Text
     }
 
     static PyMethodDef _methods_TextSummarizer[] = {
+        { "is_prompt_larger_than_context", reinterpret_cast<PyCFunction>(TextSummarizer_IsPromptLargerThanContext), METH_VARARGS, nullptr },
         { "summarize_async", reinterpret_cast<PyCFunction>(TextSummarizer_SummarizeAsync), METH_VARARGS, nullptr },
         { "summarize_conversation_async", reinterpret_cast<PyCFunction>(TextSummarizer_SummarizeConversationAsync), METH_VARARGS, nullptr },
         { "summarize_paragraph_async", reinterpret_cast<PyCFunction>(TextSummarizer_SummarizeParagraphAsync), METH_VARARGS, nullptr },

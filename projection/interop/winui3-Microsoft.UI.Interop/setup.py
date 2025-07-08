@@ -27,8 +27,8 @@ class build_ext_ex(build_ext):
             raise ValueError(f"Unsupported compiler: {self.compiler.compiler_type}")
 
         target = self.plat_name.replace("32", "-x86").replace("amd", "x").replace("win", "win10")
-        target2 = self.plat_name.replace("32", "-x86").replace("amd", "x")
-        ext.library_dirs = [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "lib" / target), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "lib" / target2), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.ML" / "lib" / target2)]
+        target2 = self.plat_name.replace("32", "-x86").replace("amd", "x").replace("win-", "")
+        ext.library_dirs = [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "lib" / target), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "lib" / "native" / target2)]
 
         build_ext.build_extension(self, ext)
 
@@ -39,7 +39,7 @@ setup(
         Extension(
             "winui3._winui3_microsoft_ui_interop",
             sources=["py.Microsoft.UI.Interop.cpp"],
-            include_dirs=get_include_dirs()+ get_app_sdk_include_dirs()+ [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.InteractiveExperiences" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Packages" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.WinUI" / "include")],
+            include_dirs=get_include_dirs()+ get_app_sdk_include_dirs()+ [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.InteractiveExperiences" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Packages" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.WinUI" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Runtime" / "include")],
             libraries=["windowsapp"],
         )
     ],

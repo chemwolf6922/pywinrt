@@ -76,6 +76,13 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::AI::Text
         ITextRewriter(std::nullptr_t = nullptr) noexcept {}
         ITextRewriter(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct WINRT_IMPL_EMPTY_BASES ITextRewriter2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ITextRewriter2>
+    {
+        ITextRewriter2(std::nullptr_t = nullptr) noexcept {}
+        ITextRewriter2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct WINRT_IMPL_EMPTY_BASES ITextRewriterFactory :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ITextRewriterFactory>
@@ -96,6 +103,13 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::AI::Text
     {
         ITextSummarizer2(std::nullptr_t = nullptr) noexcept {}
         ITextSummarizer2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES ITextSummarizer3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ITextSummarizer3>
+    {
+        ITextSummarizer3(std::nullptr_t = nullptr) noexcept {}
+        ITextSummarizer3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct WINRT_IMPL_EMPTY_BASES ITextSummarizerFactory :
         winrt::Windows::Foundation::IInspectable,

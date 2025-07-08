@@ -15,7 +15,7 @@ import winui3.microsoft.windows.ai as microsoft_windows_ai
 import winui3.microsoft.windows.ai.contentsafety as microsoft_windows_ai_contentsafety
 import winui3.microsoft.windows.ai.foundation as microsoft_windows_ai_foundation
 
-from winui3.microsoft.windows.ai.text import InputKind, LanguageModelResponseStatus
+from winui3.microsoft.windows.ai.text import InputKind, LanguageModelResponseStatus, TextRewriteTone
 
 Self = typing.TypeVar('Self')
 
@@ -44,6 +44,12 @@ class ConversationSummaryOptions(winrt.system.Object):
     # System.Void Microsoft.Windows.AI.Text.ConversationSummaryOptions::put_MaxKeyPoints(System.UInt32)
     @max_key_points.setter
     def max_key_points(self, value: winrt.system.UInt32) -> None: ...
+    # System.String Microsoft.Windows.AI.Text.ConversationSummaryOptions::get_Language()
+    @_property
+    def language(self) -> str: ...
+    # System.Void Microsoft.Windows.AI.Text.ConversationSummaryOptions::put_Language(System.String)
+    @language.setter
+    def language(self, value: str) -> None: ...
     # Microsoft.Windows.AI.Text.InputKind Microsoft.Windows.AI.Text.ConversationSummaryOptions::get_InputKind()
     @_property
     def input_kind(self) -> InputKind: ...
@@ -169,12 +175,18 @@ class LanguageModelResponseResult(winrt.system.Object):
 @typing.final
 class TextRewriter(winrt.system.Object):
     def __new__(cls: typing.Type[Self], language_model: LanguageModel) -> Self: ...
+    @typing.overload
     # Windows.Foundation.IAsyncOperationWithProgress`2<Microsoft.Windows.AI.Text.LanguageModelResponseResult,System.String> Microsoft.Windows.AI.Text.TextRewriter::RewriteAsync(System.String)
     def rewrite_async(self, text: str, /) -> windows_foundation.IAsyncOperationWithProgress[LanguageModelResponseResult, str]: ...
+    @typing.overload
+    # Windows.Foundation.IAsyncOperationWithProgress`2<Microsoft.Windows.AI.Text.LanguageModelResponseResult,System.String> Microsoft.Windows.AI.Text.TextRewriter::RewriteAsync(System.String,Microsoft.Windows.AI.Text.TextRewriteTone)
+    def rewrite_async(self, text: str, flavor: TextRewriteTone, /) -> windows_foundation.IAsyncOperationWithProgress[LanguageModelResponseResult, str]: ...
 
 @typing.final
 class TextSummarizer(winrt.system.Object):
     def __new__(cls: typing.Type[Self], language_model: LanguageModel) -> Self: ...
+    # System.Boolean Microsoft.Windows.AI.Text.TextSummarizer::IsPromptLargerThanContext(Microsoft.Windows.AI.Text.ConversationItem[],Microsoft.Windows.AI.Text.ConversationSummaryOptions,System.UInt64&)
+    def is_prompt_larger_than_context(self, messages: typing.Union[winrt.system.Array[ConversationItem], winrt.system.ReadableBuffer], options: ConversationSummaryOptions, /) -> typing.Tuple[bool, winrt.system.UInt64]: ...
     # Windows.Foundation.IAsyncOperationWithProgress`2<Microsoft.Windows.AI.Text.LanguageModelResponseResult,System.String> Microsoft.Windows.AI.Text.TextSummarizer::SummarizeAsync(System.String)
     def summarize_async(self, text: str, /) -> windows_foundation.IAsyncOperationWithProgress[LanguageModelResponseResult, str]: ...
     # Windows.Foundation.IAsyncOperationWithProgress`2<Microsoft.Windows.AI.Text.LanguageModelResponseResult,System.String> Microsoft.Windows.AI.Text.TextSummarizer::SummarizeConversationAsync(Windows.Foundation.Collections.IVectorView`1<Microsoft.Windows.AI.Text.ConversationItem>,Microsoft.Windows.AI.Text.ConversationSummaryOptions)

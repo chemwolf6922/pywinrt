@@ -16,9 +16,9 @@ os.environ["MICROSOFT_UI_XAML_PATH"] = os.fspath(MICROSOFT_UI_XAML_PATH)
 os.environ["WINDOWS_APP_SDK_PATH"] = os.fspath(WINDOWS_APP_SDK_PATH)
 
 winml_packages = [
-    PROJECTION_PATH / "winrt-runtime",
-    PROJECTION_PATH / "winrt" / "winrt-Windows.Foundation",
-    PROJECTION_PATH / "winrt" / "winrt-Windows.Foundation.Collections",
+    # PROJECTION_PATH / "winrt-runtime",
+    # PROJECTION_PATH / "winrt" / "winrt-Windows.Foundation",
+    # PROJECTION_PATH / "winrt" / "winrt-Windows.Foundation.Collections",
     PROJECTION_PATH / "winui3" / "winui3-Microsoft.Windows.AI.MachineLearning",
     PROJECTION_PATH / "interop" / "winui3-Microsoft.Windows.ApplicationModel.DynamicDependency.Bootstrap"
 ]

@@ -41,6 +41,13 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::AI::Text
         ResponseBlockedByContentModeration = 5,
         Error = 6,
     };
+    enum class TextRewriteTone : int32_t
+    {
+        Default = 0,
+        General = 1,
+        Casual = 2,
+        Formal = 3,
+    };
     struct IConversationItem;
     struct IConversationSummaryOptions;
     struct ILanguageModel;
@@ -51,9 +58,11 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::AI::Text
     struct ILanguageModelResponseResult;
     struct ILanguageModelStatics;
     struct ITextRewriter;
+    struct ITextRewriter2;
     struct ITextRewriterFactory;
     struct ITextSummarizer;
     struct ITextSummarizer2;
+    struct ITextSummarizer3;
     struct ITextSummarizerFactory;
     struct ITextToTableConverter;
     struct ITextToTableConverterFactory;
@@ -86,9 +95,11 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ILanguageModelResponseResult>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ILanguageModelStatics>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextRewriter>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextRewriter2>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextSummarizer>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextSummarizer2>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextSummarizerFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextToTableConverter>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::ITextToTableConverterFactory>{ using type = interface_category; };
@@ -108,6 +119,7 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::Windows::AI::Text::TextToTableRow>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::InputKind>{ using type = enum_category; };
     template <> struct category<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseStatus>{ using type = enum_category; };
+    template <> struct category<winrt::Microsoft::Windows::AI::Text::TextRewriteTone>{ using type = enum_category; };
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ConversationItem> = L"Microsoft.Windows.AI.Text.ConversationItem";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ConversationSummaryOptions> = L"Microsoft.Windows.AI.Text.ConversationSummaryOptions";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::LanguageModel> = L"Microsoft.Windows.AI.Text.LanguageModel";
@@ -122,6 +134,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::TextToTableRow> = L"Microsoft.Windows.AI.Text.TextToTableRow";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::InputKind> = L"Microsoft.Windows.AI.Text.InputKind";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseStatus> = L"Microsoft.Windows.AI.Text.LanguageModelResponseStatus";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::TextRewriteTone> = L"Microsoft.Windows.AI.Text.TextRewriteTone";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::IConversationItem> = L"Microsoft.Windows.AI.Text.IConversationItem";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions> = L"Microsoft.Windows.AI.Text.IConversationSummaryOptions";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ILanguageModel> = L"Microsoft.Windows.AI.Text.ILanguageModel";
@@ -132,9 +145,11 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ILanguageModelResponseResult> = L"Microsoft.Windows.AI.Text.ILanguageModelResponseResult";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ILanguageModelStatics> = L"Microsoft.Windows.AI.Text.ILanguageModelStatics";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextRewriter> = L"Microsoft.Windows.AI.Text.ITextRewriter";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextRewriter2> = L"Microsoft.Windows.AI.Text.ITextRewriter2";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory> = L"Microsoft.Windows.AI.Text.ITextRewriterFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizer> = L"Microsoft.Windows.AI.Text.ITextSummarizer";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizer2> = L"Microsoft.Windows.AI.Text.ITextSummarizer2";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3> = L"Microsoft.Windows.AI.Text.ITextSummarizer3";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizerFactory> = L"Microsoft.Windows.AI.Text.ITextSummarizerFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextToTableConverter> = L"Microsoft.Windows.AI.Text.ITextToTableConverter";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::ITextToTableConverterFactory> = L"Microsoft.Windows.AI.Text.ITextToTableConverterFactory";
@@ -143,7 +158,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::LanguageModelContract> = L"Microsoft.Windows.AI.Text.LanguageModelContract";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::AI::Text::TextIntelligenceContract> = L"Microsoft.Windows.AI.Text.TextIntelligenceContract";
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::IConversationItem>{ 0x957B0B85,0x4D7E,0x5788,{ 0xBA,0xAE,0xAF,0x7C,0xF2,0x56,0xBB,0x8E } }; // 957B0B85-4D7E-5788-BAAE-AF7CF256BB8E
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>{ 0x48C5DE4A,0x46A0,0x5B59,{ 0x94,0x8D,0xE0,0xEE,0x0A,0xF5,0x36,0x17 } }; // 48C5DE4A-46A0-5B59-948D-E0EE0AF53617
+    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>{ 0x360BCE9F,0xFD14,0x5D0E,{ 0xBD,0x24,0xFD,0x78,0xED,0x30,0x38,0xE6 } }; // 360BCE9F-FD14-5D0E-BD24-FD78ED3038E6
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ILanguageModel>{ 0x6331C629,0x8C86,0x5BFE,{ 0x8C,0x4E,0x9C,0xA5,0x57,0x3C,0xC1,0x4B } }; // 6331C629-8C86-5BFE-8C4E-9CA5573CC14B
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ILanguageModel2>{ 0x653B714E,0xF9B3,0x51CB,{ 0x95,0x4F,0x5E,0xA5,0x8F,0x63,0xAB,0x89 } }; // 653B714E-F9B3-51CB-954F-5EA58F63AB89
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ILanguageModelContext>{ 0x518B305C,0x7B69,0x5A33,{ 0x81,0x29,0xD4,0x7D,0x6B,0x8E,0xEC,0x4E } }; // 518B305C-7B69-5A33-8129-D47D6B8EEC4E
@@ -152,9 +167,11 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ILanguageModelResponseResult>{ 0x3A256FFF,0xA426,0x5D3B,{ 0x8E,0x4B,0x3A,0xC8,0x41,0x62,0x47,0x1E } }; // 3A256FFF-A426-5D3B-8E4B-3AC84162471E
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ILanguageModelStatics>{ 0x8F18F9AF,0x6095,0x553B,{ 0x8D,0x9D,0x6B,0xCC,0x98,0x02,0x65,0x46 } }; // 8F18F9AF-6095-553B-8D9D-6BCC98026546
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextRewriter>{ 0xEB1E7CF0,0xE110,0x506C,{ 0xB0,0xEA,0x7A,0x28,0x8D,0x8E,0x77,0x78 } }; // EB1E7CF0-E110-506C-B0EA-7A288D8E7778
+    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextRewriter2>{ 0x7937D261,0x13CE,0x5B24,{ 0xB1,0x7C,0xFE,0x5C,0xD0,0xBE,0x23,0xB6 } }; // 7937D261-13CE-5B24-B17C-FE5CD0BE23B6
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory>{ 0xF452E60D,0xEF50,0x5BC9,{ 0xB4,0x83,0x21,0x7D,0x5B,0x4E,0x71,0x51 } }; // F452E60D-EF50-5BC9-B483-217D5B4E7151
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizer>{ 0xEEF548C5,0xD7BC,0x50BE,{ 0xA8,0xAB,0x29,0xE2,0x41,0xB7,0x8B,0xD1 } }; // EEF548C5-D7BC-50BE-A8AB-29E241B78BD1
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizer2>{ 0x9E20797D,0x1FF6,0x5295,{ 0x8C,0xB6,0xD4,0x8F,0xB8,0xBA,0x48,0x3B } }; // 9E20797D-1FF6-5295-8CB6-D48FB8BA483B
+    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>{ 0x493D32B9,0xDBC9,0x5D4B,{ 0x80,0x2F,0x90,0x47,0x38,0x50,0x50,0x0E } }; // 493D32B9-DBC9-5D4B-802F-90473850500E
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextSummarizerFactory>{ 0xB6A75913,0x4A1E,0x59E7,{ 0x85,0x6A,0xAE,0x7A,0xB2,0x38,0x38,0x64 } }; // B6A75913-4A1E-59E7-856A-AE7AB2383864
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextToTableConverter>{ 0xA008D9AD,0x25CE,0x5A6B,{ 0x9C,0xEB,0xD8,0xE9,0x5D,0x04,0xE1,0x0B } }; // A008D9AD-25CE-5A6B-9CEB-D8E95D04E10B
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::AI::Text::ITextToTableConverterFactory>{ 0xBB84CBB5,0x19C8,0x5857,{ 0xB6,0x5D,0x70,0x5A,0xA1,0x48,0x64,0x04 } }; // BB84CBB5-19C8-5857-B65D-705AA1486404
@@ -194,6 +211,8 @@ namespace winrt::impl
             virtual int32_t __stdcall put_IncludeParticipantAttribution(bool) noexcept = 0;
             virtual int32_t __stdcall get_MaxKeyPoints(uint32_t*) noexcept = 0;
             virtual int32_t __stdcall put_MaxKeyPoints(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_Language(void**) noexcept = 0;
+            virtual int32_t __stdcall put_Language(void*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::Windows::AI::Text::ILanguageModel>
@@ -276,6 +295,13 @@ namespace winrt::impl
             virtual int32_t __stdcall RewriteAsync(void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Microsoft::Windows::AI::Text::ITextRewriter2>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall RewriteAsync(void*, int32_t, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory>
     {
         struct WINRT_IMPL_NOVTABLE type : inspectable_abi
@@ -296,6 +322,13 @@ namespace winrt::impl
         struct WINRT_IMPL_NOVTABLE type : inspectable_abi
         {
             virtual int32_t __stdcall SummarizeConversationAsync(void*, void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall IsPromptLargerThanContext(uint32_t, void**, void*, uint64_t*, bool*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::Windows::AI::Text::ITextSummarizerFactory>
@@ -358,6 +391,8 @@ namespace winrt::impl
         auto IncludeParticipantAttribution(bool value) const;
         [[nodiscard]] auto MaxKeyPoints() const;
         auto MaxKeyPoints(uint32_t value) const;
+        [[nodiscard]] auto Language() const;
+        auto Language(param::hstring const& value) const;
     };
     template <> struct consume<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>
     {
@@ -460,6 +495,15 @@ namespace winrt::impl
         template <typename D> using type = consume_Microsoft_Windows_AI_Text_ITextRewriter<D>;
     };
     template <typename D>
+    struct consume_Microsoft_Windows_AI_Text_ITextRewriter2
+    {
+        auto RewriteAsync(param::hstring const& text, winrt::Microsoft::Windows::AI::Text::TextRewriteTone const& flavor) const;
+    };
+    template <> struct consume<winrt::Microsoft::Windows::AI::Text::ITextRewriter2>
+    {
+        template <typename D> using type = consume_Microsoft_Windows_AI_Text_ITextRewriter2<D>;
+    };
+    template <typename D>
     struct consume_Microsoft_Windows_AI_Text_ITextRewriterFactory
     {
         auto CreateInstance(winrt::Microsoft::Windows::AI::Text::LanguageModel const& languageModel) const;
@@ -486,6 +530,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Microsoft::Windows::AI::Text::ITextSummarizer2>
     {
         template <typename D> using type = consume_Microsoft_Windows_AI_Text_ITextSummarizer2<D>;
+    };
+    template <typename D>
+    struct consume_Microsoft_Windows_AI_Text_ITextSummarizer3
+    {
+        auto IsPromptLargerThanContext(array_view<winrt::Microsoft::Windows::AI::Text::ConversationItem const> messages, winrt::Microsoft::Windows::AI::Text::ConversationSummaryOptions const& options, uint64_t& cutoffPosition) const;
+    };
+    template <> struct consume<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>
+    {
+        template <typename D> using type = consume_Microsoft_Windows_AI_Text_ITextSummarizer3<D>;
     };
     template <typename D>
     struct consume_Microsoft_Windows_AI_Text_ITextSummarizerFactory

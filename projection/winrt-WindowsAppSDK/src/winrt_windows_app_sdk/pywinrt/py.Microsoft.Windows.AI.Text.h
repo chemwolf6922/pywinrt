@@ -24,6 +24,9 @@ namespace py
     template<>
     inline constexpr const char* buffer_format<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseStatus> = "i";
 
+    template<>
+    inline constexpr const char* buffer_format<winrt::Microsoft::Windows::AI::Text::TextRewriteTone> = "i";
+
 
     template<>
     struct py_type<winrt::Microsoft::Windows::AI::Text::InputKind>
@@ -39,6 +42,14 @@ namespace py
         static constexpr std::string_view qualified_name = "winui3.microsoft.windows.ai.text.LanguageModelResponseStatus";
         static constexpr const char* module_name = "winui3.microsoft.windows.ai.text";
         static constexpr const char* type_name = "LanguageModelResponseStatus";
+    };
+
+    template<>
+    struct py_type<winrt::Microsoft::Windows::AI::Text::TextRewriteTone>
+    {
+        static constexpr std::string_view qualified_name = "winui3.microsoft.windows.ai.text.TextRewriteTone";
+        static constexpr const char* module_name = "winui3.microsoft.windows.ai.text";
+        static constexpr const char* type_name = "TextRewriteTone";
     };
 
     template<>

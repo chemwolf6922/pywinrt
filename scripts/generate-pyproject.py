@@ -131,8 +131,8 @@ except KeyError:
 
 APP_SDK_EXTRA_BUILD = """
         target = self.plat_name.replace("32", "-x86").replace("amd", "x").replace("win", "win10")
-        target2 = self.plat_name.replace("32", "-x86").replace("amd", "x")
-        ext.library_dirs = [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "lib" / target), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "lib" / target2), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.ML" / "lib" / target2)]
+        target2 = self.plat_name.replace("32", "-x86").replace("amd", "x").replace("win-", "")
+        ext.library_dirs = [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "lib" / target), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "lib" / "native" / target2)]
 """
 
 README_TEMPLATE = """\
@@ -394,7 +394,7 @@ def write_project_files(
                         else ""
                     )
                     + (
-                        '+ [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.InteractiveExperiences" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Packages" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.WinUI" / "include")]'
+                        '+ [os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.DWrite" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Foundation" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.InteractiveExperiences" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Packages" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.WinUI" / "include"), os.fspath(WINDOWS_APP_SDK_PATH / ".." / "Microsoft.WindowsAppSDK.Runtime" / "include")]'
                         if is_app_sdk_interop_package(package_name)
                         else ""
                     )

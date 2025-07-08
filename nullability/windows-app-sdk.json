@@ -193208,6 +193208,16 @@
             "parameters": []
           },
           {
+            "signature": "System.String Microsoft.Windows.AI.Text.ConversationSummaryOptions::get_Language()",
+            "name": "get_Language",
+            "return": {
+              "type": {
+                "name": "System.String"
+              }
+            },
+            "parameters": []
+          },
+          {
             "signature": "System.UInt32 Microsoft.Windows.AI.Text.ConversationSummaryOptions::get_MaxKeyPoints()",
             "name": "get_MaxKeyPoints",
             "return": {
@@ -193267,6 +193277,24 @@
                 "kind": "in",
                 "type": {
                   "name": "Microsoft.Windows.AI.Text.InputKind"
+                }
+              }
+            ]
+          },
+          {
+            "signature": "System.Void Microsoft.Windows.AI.Text.ConversationSummaryOptions::put_Language(System.String)",
+            "name": "put_Language",
+            "return": {
+              "type": {
+                "name": "System.Void"
+              }
+            },
+            "parameters": [
+              {
+                "name": "value",
+                "kind": "in",
+                "type": {
+                  "name": "System.String"
                 }
               }
             ]
@@ -193974,6 +194002,39 @@
                 }
               }
             ]
+          },
+          {
+            "signature": "Windows.Foundation.IAsyncOperationWithProgress`2<Microsoft.Windows.AI.Text.LanguageModelResponseResult,System.String> Microsoft.Windows.AI.Text.TextRewriter::RewriteAsync(System.String,Microsoft.Windows.AI.Text.TextRewriteTone)",
+            "name": "RewriteAsync",
+            "return": {
+              "type": {
+                "name": "Windows.Foundation.IAsyncOperationWithProgress`2",
+                "args": [
+                  {
+                    "name": "Microsoft.Windows.AI.Text.LanguageModelResponseResult"
+                  },
+                  {
+                    "name": "System.String"
+                  }
+                ]
+              }
+            },
+            "parameters": [
+              {
+                "name": "text",
+                "kind": "in",
+                "type": {
+                  "name": "System.String"
+                }
+              },
+              {
+                "name": "flavor",
+                "kind": "in",
+                "type": {
+                  "name": "Microsoft.Windows.AI.Text.TextRewriteTone"
+                }
+              }
+            ]
           }
         ]
       },
@@ -193994,6 +194055,38 @@
                 "kind": "in",
                 "type": {
                   "name": "Microsoft.Windows.AI.Text.LanguageModel"
+                }
+              }
+            ]
+          },
+          {
+            "signature": "System.Boolean Microsoft.Windows.AI.Text.TextSummarizer::IsPromptLargerThanContext(Microsoft.Windows.AI.Text.ConversationItem[],Microsoft.Windows.AI.Text.ConversationSummaryOptions,System.UInt64&)",
+            "name": "IsPromptLargerThanContext",
+            "return": {
+              "type": {
+                "name": "System.Boolean"
+              }
+            },
+            "parameters": [
+              {
+                "name": "messages",
+                "kind": "passArray",
+                "type": {
+                  "name": "Microsoft.Windows.AI.Text.ConversationItem"
+                }
+              },
+              {
+                "name": "options",
+                "kind": "in",
+                "type": {
+                  "name": "Microsoft.Windows.AI.Text.ConversationSummaryOptions"
+                }
+              },
+              {
+                "name": "cutoffPosition",
+                "kind": "out",
+                "type": {
+                  "name": "System.UInt64"
                 }
               }
             ]

@@ -219,6 +219,40 @@ namespace winrt::impl
             check_hresult(_winrt_abi_type->put_MaxKeyPoints(value));
         }
     }
+    template <typename D> auto consume_Microsoft_Windows_AI_Text_IConversationSummaryOptions<D>::Language() const
+    {
+        void* value{};
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->get_Language(&value));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>**)this;
+            check_hresult(_winrt_abi_type->get_Language(&value));
+        }
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Microsoft_Windows_AI_Text_IConversationSummaryOptions<D>::Language(param::hstring const& value) const
+    {
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->put_Language(*(void**)(&value)));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::IConversationSummaryOptions>**)this;
+            check_hresult(_winrt_abi_type->put_Language(*(void**)(&value)));
+        }
+    }
     template <typename D> auto consume_Microsoft_Windows_AI_Text_ILanguageModel2<D>::GenerateResponseAsync(param::hstring const& prompt) const
     {
         void* operation{};
@@ -787,6 +821,24 @@ namespace winrt::impl
         }
         return winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseResult, hstring>{ operation, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Microsoft_Windows_AI_Text_ITextRewriter2<D>::RewriteAsync(param::hstring const& text, winrt::Microsoft::Windows::AI::Text::TextRewriteTone const& flavor) const
+    {
+        void* operation{};
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::Windows::AI::Text::ITextRewriter2>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::Windows::AI::Text::ITextRewriter2, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::ITextRewriter2>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->RewriteAsync(*(void**)(&text), static_cast<int32_t>(flavor), &operation));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::ITextRewriter2>**)this;
+            check_hresult(_winrt_abi_type->RewriteAsync(*(void**)(&text), static_cast<int32_t>(flavor), &operation));
+        }
+        return winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseResult, hstring>{ operation, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Microsoft_Windows_AI_Text_ITextRewriterFactory<D>::CreateInstance(winrt::Microsoft::Windows::AI::Text::LanguageModel const& languageModel) const
     {
         void* value{};
@@ -858,6 +910,24 @@ namespace winrt::impl
             check_hresult(_winrt_abi_type->SummarizeConversationAsync(*(void**)(&messages), *(void**)(&options), &operation));
         }
         return winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseResult, hstring>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Microsoft_Windows_AI_Text_ITextSummarizer3<D>::IsPromptLargerThanContext(array_view<winrt::Microsoft::Windows::AI::Text::ConversationItem const> messages, winrt::Microsoft::Windows::AI::Text::ConversationSummaryOptions const& options, uint64_t& cutoffPosition) const
+    {
+        bool result{};
+        if constexpr (!std::is_same_v<D, winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>)
+        {
+            winrt::hresult _winrt_cast_result_code;
+            auto const _winrt_casted_result = impl::try_as_with_reason<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3, D const*>(static_cast<D const*>(this), _winrt_cast_result_code);
+            check_hresult(_winrt_cast_result_code);
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>**)&_winrt_casted_result;
+            check_hresult(_winrt_abi_type->IsPromptLargerThanContext(messages.size(), get_abi(messages), *(void**)(&options), &cutoffPosition, &result));
+        }
+        else
+        {
+            auto const _winrt_abi_type = *(abi_t<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>**)this;
+            check_hresult(_winrt_abi_type->IsPromptLargerThanContext(messages.size(), get_abi(messages), *(void**)(&options), &cutoffPosition, &result));
+        }
+        return result;
     }
     template <typename D> auto consume_Microsoft_Windows_AI_Text_ITextSummarizerFactory<D>::CreateInstance(winrt::Microsoft::Windows::AI::Text::LanguageModel const& languageModel) const
     {
@@ -1080,6 +1150,21 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().MaxKeyPoints(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Language(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Language());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Language(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Language(*reinterpret_cast<hstring const*>(&value));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1378,6 +1463,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Microsoft::Windows::AI::Text::ITextRewriter2> : produce_base<D, winrt::Microsoft::Windows::AI::Text::ITextRewriter2>
+    {
+        int32_t __stdcall RewriteAsync(void* text, int32_t flavor, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseResult, hstring>>(this->shim().RewriteAsync(*reinterpret_cast<hstring const*>(&text), *reinterpret_cast<winrt::Microsoft::Windows::AI::Text::TextRewriteTone const*>(&flavor)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory> : produce_base<D, winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory>
     {
         int32_t __stdcall CreateInstance(void* languageModel, void** value) noexcept final try
@@ -1421,6 +1520,19 @@ namespace winrt::impl
             clear_abi(operation);
             typename D::abi_guard guard(this->shim());
             *operation = detach_from<winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Microsoft::Windows::AI::Text::LanguageModelResponseResult, hstring>>(this->shim().SummarizeConversationAsync(*reinterpret_cast<winrt::Windows::Foundation::Collections::IVectorView<winrt::Microsoft::Windows::AI::Text::ConversationItem> const*>(&messages), *reinterpret_cast<winrt::Microsoft::Windows::AI::Text::ConversationSummaryOptions const*>(&options)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Microsoft::Windows::AI::Text::ITextSummarizer3> : produce_base<D, winrt::Microsoft::Windows::AI::Text::ITextSummarizer3>
+    {
+        int32_t __stdcall IsPromptLargerThanContext(uint32_t __messagesSize, void** messages, void* options, uint64_t* cutoffPosition, bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().IsPromptLargerThanContext(array_view<winrt::Microsoft::Windows::AI::Text::ConversationItem const>(reinterpret_cast<winrt::Microsoft::Windows::AI::Text::ConversationItem const *>(messages), reinterpret_cast<winrt::Microsoft::Windows::AI::Text::ConversationItem const *>(messages) + __messagesSize), *reinterpret_cast<winrt::Microsoft::Windows::AI::Text::ConversationSummaryOptions const*>(&options), *cutoffPosition));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1564,9 +1676,11 @@ namespace std
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ILanguageModelResponseResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ILanguageModelStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextRewriter> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextRewriter2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextRewriterFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextSummarizer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextSummarizer2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextSummarizer3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextSummarizerFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextToTableConverter> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::AI::Text::ITextToTableConverterFactory> : winrt::impl::hash_base {};

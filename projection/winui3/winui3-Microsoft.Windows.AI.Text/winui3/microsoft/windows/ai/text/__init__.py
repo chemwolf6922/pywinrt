@@ -21,6 +21,7 @@ from winui3._winui3_microsoft_windows_ai_text import (
 __all__ = [
     "InputKind",
     "LanguageModelResponseStatus",
+    "TextRewriteTone",
     "ConversationItem",
     "ConversationSummaryOptions",
     "LanguageModel",
@@ -47,4 +48,10 @@ class LanguageModelResponseStatus(enum.IntEnum):
     PROMPT_BLOCKED_BY_CONTENT_MODERATION = 4
     RESPONSE_BLOCKED_BY_CONTENT_MODERATION = 5
     ERROR = 6
+
+class TextRewriteTone(enum.IntEnum):
+    DEFAULT = 0
+    GENERAL = 1
+    CASUAL = 2
+    FORMAL = 3
 
