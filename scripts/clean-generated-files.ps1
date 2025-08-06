@@ -10,9 +10,11 @@ $directories = @(
 
 # Process each directory
 foreach ($dir in $directories) {
-    # Convert to absolute path
-    $fullPath = Resolve-Path -Path $dir -ErrorAction SilentlyContinue
-    
+    # Convert to absolute path relative to script's directory
+    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    $fullPath = Join-Path $scriptDir $dir
+    $fullPath = Resolve-Path -Path $fullPath -ErrorAction SilentlyContinue
+
     if ($fullPath -and (Test-Path $fullPath)) {
         Write-Host "Cleaning directory: $fullPath" -ForegroundColor Yellow
         
